@@ -14,6 +14,7 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
+  // Variables
   var lengthOfPass = prompt("How many characters would you like the password to be? Minumum 8 character, Maximum 128 characters");
   var userCharacterTypes = prompt("Would you like to use lowercase, uppercase, numbers, and/or special characters in your password? Please type in which you would like to use seperated by a comma").toLowerCase().split(",");
   var characterTypes = ["lowercase", "uppercase", "numbers", "special characters"];
@@ -25,6 +26,7 @@ function generatePassword() {
   var verifiedNum = false;
   var newPassword = ""
 
+  // Check for correct length
   if (lengthOfPass >= 8 && lengthOfPass <= 128){
     lengthOfPass = lengthOfPass;
     verifiedNum = true;
@@ -32,6 +34,7 @@ function generatePassword() {
   else {
     alert("Please enter in a length between 8 and 128 characters")
   }
+  // Check for character types
   for (var i = 0; i < userCharacterTypes.length; i++) {
       var currentWord = userCharacterTypes[i].trim();
     if (characterTypes.includes(currentWord)) {
@@ -41,8 +44,10 @@ function generatePassword() {
   if (verifiedChar === false) {
     alert("Please enter in atleast one character type");
   }
-
+  // If both above criteria are met
   if (verifiedChar === true && verifiedNum === true) {
+  // Append all selected character types to allChars
+
     if (userCharacterTypes.includes("lowercase")) {
       allChars += letters 
     }
@@ -55,7 +60,7 @@ function generatePassword() {
     if (userCharacterTypes.includes("special characters")) {
       allChars += specialCharacters
     }
-
+  // Generate new password
     for (var i = 0; i < lengthOfPass; i++){
       newPassword += allChars[Math.floor(Math.random() * allChars.length)]
     }
